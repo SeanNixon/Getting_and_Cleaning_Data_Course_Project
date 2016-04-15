@@ -37,18 +37,19 @@ yLabels <- read.table("activity_labels.txt")[,2]
 MeanStdIndx <- grep("(mean|std)\\(\\)",xNames)
 
 if( ColumnFormat == "Long"){
-      xNames[MeanStdIndx] <- gsub("-", " ", xNames[MeanStdIndx])
-      xNames[MeanStdIndx] <- gsub("mean\\(\\)", "Mean", xNames[MeanStdIndx])
-      xNames[MeanStdIndx] <- gsub("std\\(\\)", "Standard Deviation", xNames[MeanStdIndx])
-      xNames[MeanStdIndx] <- gsub("^t", "Time ", xNames[MeanStdIndx])
-      xNames[MeanStdIndx] <- gsub("^f", "Frequency ", xNames[MeanStdIndx])
-      xNames[MeanStdIndx] <- gsub("Acc", " Accelerometer", xNames[MeanStdIndx])
-      xNames[MeanStdIndx] <- gsub("Gyro", " Gyroscope", xNames[MeanStdIndx])
-      xNames[MeanStdIndx] <- gsub("Mag", " Magnitude", xNames[MeanStdIndx])
-      xNames[MeanStdIndx] <- gsub("Jerk", " Jerk", xNames[MeanStdIndx])
+      xNames[MeanStdIndx] <- gsub("-", ".", xNames[MeanStdIndx])
+      xNames[MeanStdIndx] <- gsub("mean\\(\\)", "mean", xNames[MeanStdIndx])
+      xNames[MeanStdIndx] <- gsub("std\\(\\)", "standard.deviation", xNames[MeanStdIndx])
+      xNames[MeanStdIndx] <- gsub("^t", "time.", xNames[MeanStdIndx])
+      xNames[MeanStdIndx] <- gsub("^f", "frequency.", xNames[MeanStdIndx])
+      xNames[MeanStdIndx] <- gsub("Acc", ".accelerometer", xNames[MeanStdIndx])
+      xNames[MeanStdIndx] <- gsub("Gyro", ".gyroscope", xNames[MeanStdIndx])
+      xNames[MeanStdIndx] <- gsub("Mag", ".magnitude", xNames[MeanStdIndx])
+      xNames[MeanStdIndx] <- gsub("Jerk", ".jerk", xNames[MeanStdIndx])
       ## This seems like it was just a mistake in the naming.
       ## There's nothing about bodybody in the documentation.
       xNames[MeanStdIndx] <- gsub("BodyBody", "Body", xNames[MeanStdIndx])
+      xNames[MeanStdIndx] <- tolower(xNames[MeanStdIndx])
 }
 
 # STEP 4
@@ -83,6 +84,8 @@ TotalData$activity <- factor(TotalData$activity, levels = 1:6, labels = yLabels)
 # average of each variable for each activity and each subject.
 TidyProjectData = ddply(TotalData, c("subject","activity"), .fun = numcolwise(mean))
 
+## STEP 8
 ## Return to the original directory and save the final data file
 setwd(OldDir)
 write.table(TidyProjectData, file = "TidyProject.txt",  row.name=FALSE )
+
