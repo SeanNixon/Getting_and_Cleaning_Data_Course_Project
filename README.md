@@ -1,5 +1,7 @@
 # Getting and Cleaning Data Course Project
 
+## Description of "tidying"
+
 This code downloads the "Human Activity Recognition Using Smartphones" dataset from 
 
 https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip
@@ -17,7 +19,7 @@ and then proceeds to
 Optional - For a version of the final data frame with the original abbreviated column names change ColumnFormat to "Short", otherwise, the default
  (ColumnFormat = "Long") produces column names for the x variables with detailed descriptions. 
  
- ## Instruction for use
+## Instruction for use
  
  Download the file run_analysis.R and run source("run_analysis.R"). This will create a new directory "./UCI HAR Dataset" with 
  raw data files and generate the data frame "TidyProjectData.txt" with the modified data in your current working directory.
