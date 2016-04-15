@@ -20,17 +20,21 @@ https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Datas
 
 ## Modifications
 
-The orginal data has undergone the following tansformations
+The orginal data has undergone the following transformations
 
 1 - The test and training dat sets have been merged. 
-2 - Only x variables associated with taking the mean or standard diviation have been kept.
-2 - The numbered activities in the y variable have been replaced with the names of the associated activities.
+
+2 - Only x variables associated with taking the mean or standard deviation have been kept.
+
+3 - The numbered activities in the y variable have been replaced with the names of the associated activities.
+
+4 - The x variables are averaged for each subject and activity combination.
 
 ## Format 
 
-A data frame with 180 observations on 68 variables.
+A data frame with 180 observations on 68 variables. 2 is the y variable, 3-68 are the x variables.
 
-  [1] "subject"                                                       
+ [1] "subject"                                                       
  [2] "activity"                                                      
  [3] "time.body.accelerometer.mean.x"                                
  [4] "time.body.accelerometer.mean.y"                                
